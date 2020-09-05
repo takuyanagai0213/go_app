@@ -5,15 +5,22 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/gin-gonic/gin"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
-// type Person struct {
-// 	ID   int
-// 	Name string
-// }
-
 func main() {
+
+	router := gin.Default()
+
+	router.GET("/", func(c *gin.Context) {
+		c.String(200, "hello gin!")
+	})
+
+	router.Run("localhost:8080")
+}
+func dbConnect() {
 	db, err := sql.Open("mysql", "root@/go_app")
 	if err != nil {
 		log.Fatal(err)
@@ -29,10 +36,4 @@ func main() {
 	}
 	fmt.Println(name)
 
-	// for rows.Next() {
-	// 	var person Person
-	// 	fmt.Println(person.ID, person.Name)
-	// }
-
 }
-
