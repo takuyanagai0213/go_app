@@ -13,9 +13,11 @@ import (
 func main() {
 
 	router := gin.Default()
+	data := "test"
+	router.LoadHTMLGlob("views/*.html")
 
-	router.GET("/", func(c *gin.Context) {
-		c.String(200, "hello gin!")
+	router.GET("/", func(ctx *gin.Context) {
+		ctx.HTML(200, "index.html", gin.H{"data": data})
 	})
 
 	router.Run("localhost:8080")
