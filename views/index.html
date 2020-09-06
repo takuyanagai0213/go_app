@@ -5,6 +5,11 @@
     <title>Sample App</title>
 </head>
 <body>
-    <h1>{{.data}}</h1>
+    <h1>タスク一覧</h1>
+        <ul>
+            {{ range .todos }}
+                <li>内容:{{ .Text }},状態:{{ .Status }}</li>
+            {{ end }}
+        </ul>
 </body>
 </html>
